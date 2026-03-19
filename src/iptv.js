@@ -196,7 +196,7 @@ function xmltvToVideosForChannel(xmltv, id, channelIds) {
 			}
 
 			return {
-				id,
+				id : `${id}:${stableId(title + start)}`,
 				title,
 				subtitle: subtitle || undefined,
 				released: date ? date.toISOString() : undefined,
