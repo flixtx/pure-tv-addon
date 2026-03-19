@@ -7,7 +7,7 @@ const manifest = {
     description: "The first native EPG (Electronic Program Guide) solution for Stremio. This addon introduces a high-performance, interactive TV grid that transforms your Live TV experience.",
     catalogs: [
         {
-            type: 'tv', id: 'epg', name: 'PureTV', extra: [{
+            type: 'tv', id: `${ADDON_PREFIX}catalog`, name: 'PureTV', extra: [{
                 name: 'skip'
             }]
         }
