@@ -33,7 +33,7 @@ async function getState(cfg) {
 
 const builder = new addonBuilder(manifest)
 
-const CATALOG_PAGE_SIZE = 50
+const CATALOG_PAGE_SIZE = 20
 
 builder.defineCatalogHandler(({type, id, extra}) => {
 	console.log("request for catalogs: "+type+" "+id)
@@ -96,6 +96,7 @@ builder.defineMetaHandler(({type, id, extra}) => {
 				id,
 				type: 'tv',
 				name: displayName,
+				logo: poster,
 				poster,
 				posterShape: 'square',
 				videos,
@@ -113,14 +114,14 @@ builder.defineStreamHandler(({type, id, extra}) => {
 		if (!cfg) return { streams: [] }
 
 		const { index } = await getState(cfg)
-		const ch = index.idToChannel.get(id)
+		const ch = index.idToChannel.get(`pure:${id.split(':')[1]}`)
 		if (!ch || !ch.url) return { streams: [] }
 
 		const name = ch.tvgName || ch.name || 'Live'
 		return {
 			streams: [
 				{
-					name,
+					name: 'PureTV',
 					title: name,
 					url: ch.url,
 				},
