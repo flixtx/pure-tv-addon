@@ -62,7 +62,7 @@ builder.defineMetaHandler(({type, id, extra}) => {
 	console.log("request for meta: "+type+" "+id)
 	// Docs: https://github.com/Stremio/stremio-addon-sdk/blob/master/docs/api/requests/defineMetaHandler.md
 	return (async () => {
-		if (type !== 'tv') return { meta: null }
+		if (id.startsWith(ADDON_PREFIX)) return { meta: null }
 		const cfg = extra && extra.__cfg
 		if (!cfg) return { meta: null }
 
@@ -118,7 +118,7 @@ builder.defineStreamHandler(({type, id, extra}) => {
 	console.log("request for streams: "+type+" "+id)
 	// Docs: https://github.com/Stremio/stremio-addon-sdk/blob/master/docs/api/requests/defineStreamHandler.md
 	return (async () => {
-		if (type !== 'tv') return { streams: [] }
+		if (id.startsWith(ADDON_PREFIX)) return { streams: [] }
 		const cfg = extra && extra.__cfg
 		if (!cfg) return { streams: [] }
 
