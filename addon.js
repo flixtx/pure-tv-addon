@@ -37,7 +37,7 @@ const CATALOG_PAGE_SIZE = 20
 
 builder.defineCatalogHandler(({type, id, extra}) => {
 	return (async () => {
-		if (type !== 'tv' || id !== 'epg') return { metas: [] }
+		if (!id.startsWith(ADDON_PREFIX)) return { metas: [] }
 		const cfg = extra && extra.__cfg
 		if (!cfg) return { metas: [] }
 
@@ -58,7 +58,7 @@ builder.defineCatalogHandler(({type, id, extra}) => {
 
 builder.defineMetaHandler(({type, id, extra}) => {
 	return (async () => {
-		if (id.startsWith(ADDON_PREFIX)) return { meta: null }
+		if (!id.startsWith(ADDON_PREFIX)) return { meta: null }
 		const cfg = extra && extra.__cfg
 		if (!cfg) return { meta: null }
 
@@ -112,7 +112,7 @@ builder.defineMetaHandler(({type, id, extra}) => {
 
 builder.defineStreamHandler(({type, id, extra}) => {
 	return (async () => {
-		if (id.startsWith(ADDON_PREFIX)) return { streams: [] }
+		if (!id.startsWith(ADDON_PREFIX)) return { streams: [] }
 		const cfg = extra && extra.__cfg
 		if (!cfg) return { streams: [] }
 
