@@ -17,17 +17,3 @@
     }
   ]
 }
-```
-
-Isso é tudo que precisa. O projeto já está estruturado corretamente para Vercel — sem banco, sem disco, config stateless via LZString.
-
----
-
-### Checklist antes de fazer o deploy
-```
-1. vercel.json na raiz do projeto
-2. vercel login
-3. vercel deploy
-4. Acessa https://seu-projeto.vercel.app/configure
-5. Cola URL do M3U + XMLTV → gera link
-6. Instala no Stremio → testa EPG
